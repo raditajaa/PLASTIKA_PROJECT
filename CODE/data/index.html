@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projek Plastika - Control Center</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="logo-icon">♻️</div>
+    <h1>Projek Plastika</h1>
+    <div class="subtitle">Sistem Pengolahan &amp; Monitoring Sampah Otomatis</div>
+
+    <div class="desc-box">
+      <strong>Tentang Projek:</strong><br>
+      Projek Plastika adalah sistem pintar pemrosesan sampah otomatis berbasis IoT.
+      Dilengkapi sensor pemindai IR untuk mendeteksi volume masukan, pembaca jarak
+      ultrasonik, serta pengontrol pintu otomatis.
+    </div>
+
+    <div class="status-badge">
+      <span class="dot"></span>
+      <span id="statusText">Sistem Siap</span>
+    </div>
+
+    <div class="grid-info">
+      <div class="info-box">
+        <div class="title">Kapasitas Ruang</div>
+        <div class="value" id="valJarak">0 cm</div>
+      </div>
+      <div class="info-box">
+        <div class="title">Sampah Masuk</div>
+        <div class="value" id="valJumlah">0 Item</div>
+      </div>
+    </div>
+
+    <a href="/reset-counter" class="btn btn-reset">🔄 Reset Hitungan Sampah</a>
+
+    <form action="/start" method="GET" style="margin-top: 15px;">
+      <div class="form-group">
+        <label>DURASI TIMER MESIN (DETIK):</label>
+        <input type="number" name="timer" value="20" min="1" max="300" required>
+      </div>
+      <button type="submit" class="btn btn-start">⚡ MULAILAH PROSES</button>
+    </form>
+
+    <a href="/open-door" id="btnDoor" style="display:none;" class="btn btn-door">🔓 BUKA PINTU MESIN</a>
+
+    <div class="progress-container">
+      <div id="bar" class="progress-bar">0%</div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
