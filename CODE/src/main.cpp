@@ -204,6 +204,9 @@ void tanganiBukaPintu() {
 }
 
 void setup() {
+  // Serial Monitor untuk debugging & feedback koneksi
+  Serial.begin(115200);
+
   // Matikan Relay secepat mungkin saat booting
   pinMode(PIN_RELAY_MESIN, OUTPUT);
   pinMode(PIN_RELAY_PINTU, OUTPUT);
@@ -239,12 +242,20 @@ void setup() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Connecting WiFi");
+  Serial.print("Menghubungkan ke WiFi");
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     lcd.print(".");
+    Serial.print(".");
   }
+
+  // Feedback berhasil terhubung + IP Address ke Serial Monitor
+  Serial.println();
+  Serial.println("WiFi berhasil terhubung!");
+  Serial.print("IP Address ESP32: ");
+  Serial.println(WiFi.localIP());
 
   // Tampilkan IP Address saat pertama kali terhubung
   lcd.clear();
